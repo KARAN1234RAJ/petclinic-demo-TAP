@@ -30,8 +30,8 @@ pipeline{
      stage('Push Docker Image'){
     steps{
       echo "Pushing Docker Image"
-        script {
-        withDockerRegistry(credentialsId: 'docker_hub_kr1412') {
+         script {
+          docker.withRegistry( '', registryCredential ) {
               dockerImage.push()
               dockerImage.push('latest')
           }
