@@ -30,6 +30,12 @@ pipeline{
      stage('Push Docker Image'){
     steps{
       echo "Pushing Docker Image"
+        script {
+        withDockerRegistry(credentialsId: 'docker_hub_kr1412') {
+              dockerImage.push()
+              dockerImage.push('latest')
+          }
+        }
     }
   }
      stage('Deploy to Dev'){
